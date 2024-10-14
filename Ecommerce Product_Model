@@ -1,0 +1,40 @@
+import mongoose from "mongoose"
+import { Category } from "./category.models"
+
+const prod_Schema= new mongoose.Schema({
+  productname:{
+    type: String,
+    required: true,
+  },
+  productimage:{
+    required:true,
+    type: String
+  },
+  brand:{
+    type:String,
+    required:true
+  },
+  price:{
+    type: Number,
+    required: true,
+    default:0 
+  },
+  stock:{
+    type: Number,
+    required: true,
+    default:0
+  },
+  Category:{
+  type: mongoose.Schema.Types.ObjectId,
+  ref:"Category",
+  required:true
+  },
+  owner:{
+    type: mongoose.Schema.Types.ObjectId,
+  ref:"User",
+  required:true
+  }
+}, {timespams:true})
+
+export const Product= mongoose.model("Product", prod_Schema)
+
